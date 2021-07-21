@@ -1,7 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import 'tailwindcss/tailwind.css';
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import store from '../src/store';
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+		<Provider store={store}>
+			<Component {...pageProps} />
+		</Provider>
+  );
 }
-export default MyApp
+
+export default App;

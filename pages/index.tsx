@@ -14,6 +14,7 @@ const SeeMore = styled.div`
 `;
 
 const Card = styled.div`
+	word-break: break-all;
 	margin: 0.6rem;
 	padding: 1.2rem;
 	text-align: left;
@@ -31,7 +32,7 @@ const Card = styled.div`
 	}
 	:hover ${SeeMore} {
 		display: flex;
-	};
+	}
 	cursor: pointer;
 `;
 

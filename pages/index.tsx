@@ -9,9 +9,9 @@ import LinkButton from '../src/components/LinkButton';
 import AnimateText from '../src/components/AnimateText';
 
 
-const SeeMore = styled.div`
-	display: none;
-`;
+// const SeeMore = styled.div`
+// 	display: none;
+// `;
 
 const Card = styled.div`
 	word-break: break-all;
@@ -30,9 +30,9 @@ const Card = styled.div`
 		color: #0070f3;
 		border-color: #0070f3;
 	}
-	:hover ${SeeMore} {
+	/* :hover ${SeeMore} {
 		display: flex;
-	}
+	} */
 	cursor: pointer;
 `;
 
@@ -76,9 +76,9 @@ export default function Posts() {
 													<p>{post.body}</p>
 												</div>
 											</div>
-											<SeeMore  className="flex flex-1 justify-end">
+											{/* <SeeMore  className="flex flex-1 justify-end">
 												<div>See more &rarr;</div>
-											</SeeMore>
+											</SeeMore> */}
 										</div>
 									</Card>
 								</Link>

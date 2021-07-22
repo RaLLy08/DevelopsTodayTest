@@ -1,8 +1,11 @@
-import { ChangeEvent, ChangeEventHandler, HtmlHTMLAttributes, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ChangeEventHandler  } from "react";
 import styled from "styled-components";
 
+type TextareaType = {
+	error: boolean
+}
 
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<TextareaType>`
 	margin: 0.6rem;
 	padding: 0.9rem;
 	text-align: left;
@@ -36,11 +39,11 @@ type ResizebleTextareaType = {
 };
 
 const ResizebleTextarea: React.FC<ResizebleTextareaType> = ({ value, onChange, minRows = 1, maxRows = Infinity, error }) => {
-	const textareaRef = useRef<HTMLTextAreaElement>(null);
-	const [rows, setRows] = useState(minRows);
-	const [currentValue, setValue] = useState('');
-	const textareaLineHeight = 48;
-	const prevRow = useRef(72);
+	// const textareaRef = useRef<HTMLTextAreaElement>(null);
+	// const [rows, setRows] = useState(minRows);
+	// const [currentValue, setValue] = useState('');
+	// const textareaLineHeight = 48;
+	// const prevRow = useRef(72);
 	
 	// if (error && textareaRef.current) {
 	// 	textareaRef.current.style.borderColor = 'red';
@@ -59,7 +62,7 @@ const ResizebleTextarea: React.FC<ResizebleTextareaType> = ({ value, onChange, m
 		// setValue(event.target.value);
 	// };
 
-	return <Textarea error={error} ref={textareaRef} value={value} rows={rows} onChange={onChange} />;
+	return <Textarea error={!!error} value={value} rows={minRows} onChange={onChange} />;
 };
 
 export default ResizebleTextarea;

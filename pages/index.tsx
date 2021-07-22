@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from '../src/store';
 import ConstructPage from '../src/components/ConstructPage';
 import LinkButton from '../src/components/LinkButton';
 import AnimateText from '../src/components/AnimateText';
-import useInView from '../src/hooks/useInView';
 
 
 const SeeMore = styled.div`
@@ -49,32 +48,6 @@ export default function Posts() {
   useEffect(() => {
     dispatch(getPosts());
   }, []);
-  
-  const Item = memo(({ post }: { post: Post }) => {
-		const [setTarget, state] = useInView();
-
-		return (
-			<Link href={`/posts/${post.id}`}>
-				<Card ref={setTarget} key={post.id}>
-					{state && (
-						<div className="flex flex-row">
-							<div className="flex flex-col">
-								<div className="flex">
-									<h1 className="font-semibold mb-2">{post.title} </h1>
-								</div>
-								<div className="flex">
-									<p>{post.body}</p>
-								</div>
-							</div>
-							<SeeMore className="flex flex-1 justify-end">
-								<div>See more &rarr;</div>
-							</SeeMore>
-						</div>
-					)}
-				</Card>
-			</Link>
-		);
-  });
 
   return (
 		<ConstructPage
@@ -95,7 +68,25 @@ export default function Posts() {
 				status !== 'pending' ? (
 					<>
 						{[...posts].reverse().map(post => {
-							return <Item post={post} key={post.id} />;
+							return (
+								<Link href={`/posts/${post.id}`}>
+									<Card key={post.id}>
+										<div className="flex flex-row">
+											<div className="flex flex-col">
+												<div className="flex">
+													<h1 className="font-semibold mb-2">{post.title} </h1>
+												</div>
+												<div className="flex">
+													<p>{post.body}</p>
+												</div>
+											</div>
+											<SeeMore className="flex flex-1 justify-end">
+												<div>See more &rarr;</div>
+											</SeeMore>
+										</div>			
+									</Card>
+								</Link>
+							);
 						})}
 					</>
 				) : (

@@ -110,7 +110,7 @@ const ConstructPage: React.FC<ConstructPageType> = props => {
 				<Footer>
 					<div className="flex">
 						<a href="https://github.com/RaLLy08" target="_blank" rel="noopener noreferrer">
-							Powered by
+							<span>Powered by</span>
 							<span className="font-semibold pl-1 pr-2">RaLLy08</span>
 							<Image src="/git.svg" width={20} height={20} />
 						</a>

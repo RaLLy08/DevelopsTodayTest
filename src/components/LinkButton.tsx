@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components"
+import Link from 'next/link';
 
 export type ButtonType = {
-	onClick?: React.MouseEventHandler<HTMLButtonElement>;
-	// href: string;
+	// onClick?: React.MouseEventHandler<HTMLButtonElement>;
+	href: string
 };
 
 const Btn = styled.div`
@@ -32,10 +33,13 @@ const Btn = styled.div`
 	}
 `;
 
-const Button: React.FC<ButtonType> = props => {
+const LinkButton: React.FC<ButtonType> = (props) => {
+	
 	return (
-		<Btn {...props}>{props.children}</Btn>
+		<Link href={props.href}>
+			<Btn>{props.children}</Btn>
+		</Link>
 	);
 };
 
-export default Button;
+export default LinkButton;

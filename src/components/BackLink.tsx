@@ -1,12 +1,15 @@
 import styled from 'styled-components';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export type ButtonType = {
-	onClick?: React.MouseEventHandler<HTMLButtonElement>;
-	// href: string;
+	// onClick?: React.MouseEventHandler<HTMLButtonElement>;
+	href: string;
 };
 
 const Btn = styled.div`
 	display: inline-block;
+    padding-top: 3px;
 	font-weight: 400;
 	color: #212529;
 	text-align: center;
@@ -15,27 +18,27 @@ const Btn = styled.div`
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	background-color: transparent;
-	border: 1px solid transparent;
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
 	line-height: 1.5;
 	border-radius: 0.25rem;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-		box-shadow 0.15s ease-in-out;
-	color: #007bff;
-	border-color: #007bff;
-	:hover {
-		color: #fff;
-		background-color: #007bff;
-		border-color: #007bff;
-	}
+	box-shadow 0.15s ease-in-out;
+	color: #fff;
+	background-color: #dc3545;
+	border-color: #dc3545;
 `;
 
-const Button: React.FC<ButtonType> = props => {
+const BackButton: React.FC<ButtonType> = props => {
 	return (
-		<Btn {...props}>{props.children}</Btn>
+        <>  
+            <Image src="/back.svg" width={28} height={30} />
+			
+            <Link href={props.href}>
+                {props.children} 
+            </Link>
+        </>
 	);
 };
 
-export default Button;
+export default BackButton;

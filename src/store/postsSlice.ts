@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../axios';
 
 interface Post {
-	id: number,
-	title: string,
-	body: string
+	id?: number | string;
+	title: string;
+	body: string;
 }
 
 type Posts = Array<Post>;
@@ -19,6 +19,7 @@ export const getPosts = createAsyncThunk('/posts/get', async (_, { rejectWithVal
 		return rejectWithValue('Something wrong');
 	}
 });
+
 
 interface PostsState {
 	data: Posts;
@@ -39,16 +40,13 @@ const postsSlice = createSlice({
 	extraReducers: builder => {
 			builder.addCase(getPosts.pending, state => {
 				state.status = 'pending';
+				state.data = [];
 			});
 			builder.addCase(getPosts.fulfilled, (state, action: PayloadAction<Posts>) => {
 				state.data.push(...action.payload);
 				state.status = 'succeeded';
 			});
-
-			// When a server responses with an error:
 			builder.addCase(getPosts.rejected, (state, action) => {
-				// We show the error message
-				// and change `status` back to `idle` again.
 				if (action.payload) state.error = action.payload;
 				state.status = 'failed';
 			});

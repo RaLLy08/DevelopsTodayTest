@@ -3,13 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import postsReducer from './postsSlice';
+import postReducer from './postSlice';
 // import postReducer from './post';
 // import commentsReducer from './comments';
 
 const rootReducer = combineReducers({
 	posts: postsReducer,
 	// comments: commentsReducer,
-	// post: postReducer
+	post: postReducer
 });
 
 const store = configureStore({ reducer: rootReducer });

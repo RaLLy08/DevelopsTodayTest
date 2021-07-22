@@ -84,6 +84,11 @@ const HeaderTitle = styled.h1`
     width: 100%;
 `;
 
+const Span = styled.span`
+	font-weight: 600;
+	margin: 0px 4px 0px 4px;
+`;
+
 type ConstructPageType = {
 	headerTitle?: ReactNode;
 	topSide?: ReactNode;
@@ -111,7 +116,7 @@ const ConstructPage: React.FC<ConstructPageType> = props => {
 					<div className="flex">
 						<a href="https://github.com/RaLLy08" target="_blank" rel="noopener noreferrer">
 							<span>Powered by</span>
-							<span className="font-semibold ml-1 mr-2">RaLLy08</span>
+							<Span>RaLLy08</Span>
 							<Image src="/git.svg" width={20} height={20} />
 						</a>
 					</div>

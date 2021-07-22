@@ -19,7 +19,7 @@ type PostFormErrs = {
 	body: boolean;
 };
 // styles must mirgate to construct page
-export default function newPostPage() {
+export default function newPost() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 	// const { status, data: posts } = useAppSelector(store => store.posts);
@@ -47,7 +47,7 @@ export default function newPostPage() {
 		}
 	};
 
-	const handleCreateClick = (e: React.MouseEvent<HTMLElement>) => {
+	const handleCreateClick = (e: ChangeEvent<HTMLButtonElement>) => {
 		const emptyFields: Array<string> = _.getEmptyFields(form);
 
 		if (emptyFields.length) {
@@ -103,7 +103,7 @@ export default function newPostPage() {
 					</div>
 					<div className="flex flex-row-reverse mr-4 mt-1">
 						<div>
-							<Button onClick={e => handleCreateClick(e)}>Create Post</Button>
+							<Button onClick={handleCreateClick}>Create Post</Button>
 						</div>
 					</div>
 				</div>

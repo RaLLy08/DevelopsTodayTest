@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 import styled from 'styled-components';
 import { memo, useEffect } from 'react';
+import Link from 'next/link';
 
 import { getPosts } from '../src/store/postsSlice';
 import { useAppDispatch, useAppSelector } from '../src/store';
@@ -9,7 +8,6 @@ import ConstructPage from '../src/components/ConstructPage';
 import LinkButton from '../src/components/LinkButton';
 import AnimateText from '../src/components/AnimateText';
 import useInView from '../src/hooks/useInView';
-import Link from 'next/link';
 
 
 const SeeMore = styled.div`
@@ -44,7 +42,7 @@ type Post = {
 	id: number
 }
 // styles must mirgate to construct page
-export default function MainPage() {
+export default function Posts() {
   const dispatch = useAppDispatch();
   const { status, data: posts } = useAppSelector(store => store.posts);
   
@@ -77,8 +75,6 @@ export default function MainPage() {
 			</Link>
 		);
   });
-  console.log(posts);
-  
 
   return (
 		<ConstructPage
@@ -86,24 +82,25 @@ export default function MainPage() {
 			topSide={
 				<>
 					<div className="flex">
-						<p className={styles.description}>Latest Posts:</p>
+						<p >Latest Posts:</p>
 					</div>
 					<div className="flex">
-						<p className={`${styles.description} mr-3`}>Create</p>
+						<p className={'mr-3'}>Create</p>
 
 						<LinkButton href="/posts/new">New Post</LinkButton>
 					</div>
 				</>
 			}
 			content={
-				status !== "pending" ? (
+				status !== 'pending' ? (
 					<>
-					{posts.map(post => {
-						return <Item post={post} key={post.id}/>;
-					})}
-					
-				</>
-				) : 'Loading...'
+						{[...posts].reverse().map(post => {
+							return <Item post={post} key={post.id} />;
+						})}
+					</>
+				) : (
+					'Loading...'
+				)
 			}
 		/>
   );

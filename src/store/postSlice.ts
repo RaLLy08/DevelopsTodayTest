@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../axios';
 
 interface Comment {
-    id: number | string,
+    id?: number | string,
     postId: number | string,
     body: string,
 }
@@ -14,7 +14,7 @@ interface Post {
 	comments?: Array<Comment>; // I know it's wrong but there are no rules _-_
 }
 
-export const getPostById = createAsyncThunk('/post/getById', async (id: number | string, { rejectWithValue }) => {
+export const getPostById = createAsyncThunk('/post/get/PostById', async (id: number | string, { rejectWithValue }) => {
 	try {
 		const res = await axios.get(`posts/${id}?_embed=comments`);
 		const data = await res.data;
@@ -26,7 +26,7 @@ export const getPostById = createAsyncThunk('/post/getById', async (id: number |
 });
 
 
-export const createPost = createAsyncThunk('/post/createPost', async (post: Post, { rejectWithValue }) => {
+export const createPost = createAsyncThunk('/post/post/Post', async (post: Post, { rejectWithValue }) => {
 	try {
 		await axios.post(`posts`, post);
 		
@@ -36,6 +36,30 @@ export const createPost = createAsyncThunk('/post/createPost', async (post: Post
 	}
 });
 
+export const createComment = createAsyncThunk('/post/Comment', async (comment: Comment, { rejectWithValue }) => {
+	try {
+		const res = await axios.post(`comments`, comment);
+
+		const data = await res.data;
+
+		return data;
+	} catch (err) {
+		return rejectWithValue('Something wrong');
+	}
+});
+// 
+// export const editPost = createAsyncThunk('/put/Post', async ({ id, post }: { id: number | string, post: Post }, { rejectWithValue }) => {
+// 	try {
+// 		const res = await axios.put(`posts/${id}`, post);
+
+// 		const data = await res.data;
+
+// 		return data;
+// 	} catch (err) {
+// 		return rejectWithValue('Something wrong');
+// 	}
+// });
+/// 
 
 interface PostState {
 	data: Post | null;
@@ -75,6 +99,18 @@ const postSlice = createSlice({
 			state.status = 'succeeded';
 		});
 		builder.addCase(createPost.rejected, (state, action) => {
+			if (action.payload) state.error = action.payload;
+			state.status = 'failed';
+		});
+		builder.addCase(createComment.pending, state => {
+			state.status = 'pending';
+			// state.data = null;
+		});
+		builder.addCase(createComment.fulfilled, state => {
+			// state.data = null;
+			state.status = 'succeeded';
+		});
+		builder.addCase(createComment.rejected, (state, action) => {
 			if (action.payload) state.error = action.payload;
 			state.status = 'failed';
 		});

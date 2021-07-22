@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-export type ButtonType = {
-	onClick?: React.MouseEventHandler<HTMLButtonElement>;
-	// href: string;
-};
-
-const Btn = styled.div`
+const Btn = styled.button`
 	display: inline-block;
 	font-weight: 400;
 	color: #212529;
@@ -32,7 +27,7 @@ const Btn = styled.div`
 	}
 `;
 
-const Button: React.FC<ButtonType> = props => {
+const Button: React.FC<any> = props => {
 	return (
 		<Btn {...props}>{props.children}</Btn>
 	);

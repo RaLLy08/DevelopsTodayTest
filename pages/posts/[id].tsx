@@ -72,7 +72,7 @@ export default function Post() {
 			}
 			content={
 				post ? (
-					<div className="flex flex-1 flex-col mx-8">
+					<div className="break-all flex flex-1 flex-col mx-8">
 						<div className="flex flex-1 mb-2 ml-6 justify-center">
 							<div className="flex mr-8">
 								<h1 className="font-normal text-xl"> {post.title} </h1>

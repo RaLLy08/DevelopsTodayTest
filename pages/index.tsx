@@ -30,9 +30,6 @@ const Card = styled.div`
 		color: #0070f3;
 		border-color: #0070f3;
 	}
-	/* :hover ${SeeMore} {
-		display: flex;
-	} */
 	cursor: pointer;
 `;
 

@@ -53,9 +53,9 @@ export default function Post() {
 			dispatch(
 				createComment({
 					body: comment,
-					postId: id,
+					postId: +id,
 				})
-			);
+			)
 		}
 	};	
 

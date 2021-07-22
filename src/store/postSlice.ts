@@ -39,7 +39,7 @@ export const createPost = createAsyncThunk('/post/post/Post', async (post: Post,
 export const createComment = createAsyncThunk('/post/Comment', async (comment: Comment, { rejectWithValue }) => {
 	try {
 		const res = await axios.post(`comments`, comment);
-
+		
 		const data = await res.data;
 
 		return data;
@@ -106,8 +106,8 @@ const postSlice = createSlice({
 			state.status = 'pending';
 			// state.data = null;
 		});
-		builder.addCase(createComment.fulfilled, state => {
-			// state.data = null;
+		builder.addCase(createComment.fulfilled, (state, action) => {
+			state.data?.comments?.push(action.payload);
 			state.status = 'succeeded';
 		});
 		builder.addCase(createComment.rejected, (state, action) => {

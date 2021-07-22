@@ -90,7 +90,7 @@ export default function Post() {
 								<div className="flex flex-col">
 									{post.comments?.map(comment => {
 										return (
-											<div key={comment.id} className="flex">
+											<div key={comment.id} className="flex break-all">
 												<Card>{comment.body}</Card>
 											</div>
 										);

@@ -103,7 +103,7 @@ export default function Post() {
 
 						<div className="flex flex-col mt-1">
 							<div className="flex">
-								<ResizebleTextarea error={err} value={comment} onChange={handleChangeComment} />
+								<ResizebleTextarea error={err} value={comment} onChange={e => handleChangeComment(e)} />
 							</div>
 							<div className="flex flex-1 justify-end">
 								<div className="flex mr-4">

@@ -35,11 +35,6 @@ const Card = styled.div`
 	cursor: pointer;
 `;
 
-type Post = {
-	title: string,
-	body: string,
-	id: number
-}
 // styles must mirgate to construct page
 export default function Posts() {
   const dispatch = useAppDispatch();
@@ -69,8 +64,8 @@ export default function Posts() {
 					<>
 						{[...posts].reverse().map(post => {
 							return (
-								<Link href={`/posts/${post.id}`}>
-									<Card key={post.id}>
+								<Link key={post.id} href={`/posts/${post.id}`}>
+									<Card>
 										<div className="flex flex-row">
 											<div className="flex flex-col">
 												<div className="flex">
@@ -80,10 +75,10 @@ export default function Posts() {
 													<p>{post.body}</p>
 												</div>
 											</div>
-											<SeeMore className="flex flex-1 justify-end">
+											<SeeMore  className="flex flex-1 justify-end">
 												<div>See more &rarr;</div>
 											</SeeMore>
-										</div>			
+										</div>
 									</Card>
 								</Link>
 							);
